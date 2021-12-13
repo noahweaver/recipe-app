@@ -4,7 +4,16 @@ html, body{
     color: #cccfd7;
 }
 /* background images from pexels.com */
-html{ 
+body{ 
     background: url("https://images.pexels.com/photos/6294402/pexels-photo-6294402.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") no-repeat center center fixed; 
     background-size: cover;
   }
+.bg-dough{
+    background-color: #cac4c1;
+}
+.text-almost-black{
+    color: #2f3133;
+}
+.mx-10p{
+    margin: 0 10%;
+}
