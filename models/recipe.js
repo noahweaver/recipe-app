@@ -38,7 +38,7 @@ const recipeSchema = new Schema({
         updatedAt: 'updated_at'
     }
 })
-
+//timestamps are wrong time, date is correct
 
 //type
     //need list of types in enum
