@@ -26,6 +26,21 @@ recipeRouter.route("/")
         })
     })
 
+    //GET Featured
+//("/featured")
+//incorrect path
+recipeRouter.route('/featured') 
+    .get((req, res, next) => {
+        Recipe.findOne({featured: true},
+            (err, recipe) => {
+                if(err){
+                    res.status(500)
+                    return next(err)
+                }
+                return res.status(200).send(recipe)
+            })
+    })
+    
 //("/:recipeId") Routes
 recipeRouter.route("/:recipeId")
     .get((req, res, next) => {
@@ -50,6 +65,7 @@ recipeRouter.route("/:recipeId")
                 return res.status(201).send(updatedRecipe)
             })
     })
+
 
 //get by type, tag, search
 

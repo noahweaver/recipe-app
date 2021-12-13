@@ -27,11 +27,15 @@ const recipeSchema = new Schema({
         type: String,
         required: true
     },
+    featured:{
+        type: Boolean,
+        default: false
+    },
     notes: String,
     author: String,
     origin: String,
     nickname: String,
-    imgUrl: String
+    imgUrl: String,
 },
 {
     timestamps:{
