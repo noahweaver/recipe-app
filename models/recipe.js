@@ -31,6 +31,7 @@ const recipeSchema = new Schema({
     author: String,
     origin: String,
     nickname: String,
+    imgUrl: String
 },
 {
     timestamps:{

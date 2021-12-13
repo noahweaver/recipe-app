@@ -51,5 +51,7 @@ recipeRouter.route("/:recipeId")
             })
     })
 
+//get by type, tag, search
+
     module.exports = recipeRouter
 
