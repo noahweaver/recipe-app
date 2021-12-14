@@ -36,6 +36,8 @@ const recipeSchema = new Schema({
     origin: String,
     nickname: String,
     imgUrl: String,
+    servings: Number,
+    calories: Number
 },
 {
     timestamps:{
