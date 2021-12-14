@@ -27,7 +27,65 @@ function Submit(props) {
     })
     const [submitToggle, setSubmitToggle] = useState(false)
 
-    //context
+    //functions from slack chat with Nicholas Black and Eric
+    //from Nicholas
+//     const TEXT = "1. Reserve 1 Tbsp. cookie crumbs. Mix cream cheese and remaining crumbs until well blended. Shape into 42 (1-inch) balls. Refrigerate 30 min. 2. Melt chocolate as directed on package. Dip balls in chocolate; place on parchment or waxed paper-covered baking sheet. Sprinkle with reserved crumbs. 3. Refrigerate 1 hour or until firm."
+// const parsed_steps = []
+// for(
+//         let text_to_process = TEXT, i = 1
+//         ; text_to_process.length > 0 && i < 1000
+//         ; i++
+//     ){
+//     let [separated_step, leftovers] = pullNextStepFrom(text_to_process, i)
+//     text_to_process = leftovers
+//     parsed_steps.push(separated_step)
+// }
+
+// console.log(parsed_steps)
+
+// function pullNextStepFrom(text, expected_step_number){
+    
+//     if(text.length <= 0)
+//         return ["",""]
+
+//     const start = `${expected_step_number}.`
+//     const end = `${expected_step_number + 1}.`
+
+//     const start_position = text.indexOf(start)
+//     let end_position = text.indexOf(end) 
+
+//     if(end_position === -1)
+//         end_position = text.length
+    
+//     return [
+//         text.slice(start_position + start.length, end_position).trim(),
+//         text.slice(end_position, text.length).trim()
+//     ]
+// }
+
+//from Eric
+// const [steps, setSteps] = useState([{number: 1, text:""}])
+
+// addStep(){
+//    setSteps(prev => [...prev, {number:prev.length, text:""}])
+// }
+
+// handleChangeOfStep(e, number){
+//    setSteps(prev => prev.map(step => step.number === number ? {number, text: e.target.value} : step))
+// }
+
+// const stepsList = steps.map(step => (
+//  <input value={step.text} onChange={e=>handleChangeOfStep(e, step.number)}/>
+// ))
+
+//simplified state using i
+// const [steps, setSteps] = useState([""])
+// const stepsList = steps.map((step, i) => (
+//     <input value={step.text} onChange={e=>handleChangeOfStep(e, i)}/>
+//    ))
+
+
+//     //context
     //POST request
     function handleSubmit(e){
         e.preventDefault()
@@ -46,7 +104,7 @@ function Submit(props) {
         <div>
             {!submitToggle ? 
                 <>
-                <h1>SUBMIT</h1>
+                <h1 className="text-center">SUBMIT</h1>
                 <Form className="container" onSubmit={handleSubmit}>
                     <Form.Group controlId="name">
                         <Form.Label>Recipe Name</Form.Label>
