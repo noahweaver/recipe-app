@@ -22,11 +22,16 @@ function ContextProvider(props) {
             .then(res => setFeaturedRecipe(res.data))
             .catch(err => console.log(err))
     }
-    function submitRecipe(){
+    function submitRecipe(newRecipe){
         console.log("submit recipe was called")
-        // axios.post('/recipes')
-        //     .then(res => console.log(res))
-        //     .catch(err => console.log(err))
+        axios.post('/recipes', newRecipe)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+    function deleteBounty(recipeId){
+        axios.delete(`/recipes/${recipeId}` )
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
     return (
         <Context.Provider

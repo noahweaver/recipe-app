@@ -65,6 +65,12 @@ recipeRouter.route("/:recipeId")
                 return res.status(201).send(updatedRecipe)
             })
     })
+    .delete((req, res, next) => {
+        Recipe.findOneAndDelete({_id: req.params.recipeId},
+            (err, recipe) => {
+                
+            })
+    })
 
 
 //get by type, tag, search
