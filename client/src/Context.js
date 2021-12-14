@@ -5,10 +5,16 @@ const Context = React.createContext()
 function ContextProvider(props) {
 //state
     const [featuredRecipe, setFeaturedRecipe] = useState({})
+    const [recipesList, setRecipesList] = useState([])
 
-useEffect(() => {
-    getFeaturedRecipe()
-}, [])
+
+
+//functions    
+    useEffect(() => {
+        getFeaturedRecipe()
+    }, [])
+
+    
 
 //axios requests
     function getFeaturedRecipe(){
@@ -16,14 +22,18 @@ useEffect(() => {
             .then(res => setFeaturedRecipe(res.data))
             .catch(err => console.log(err))
     }
-
-//functions
-
-
+    function submitRecipe(){
+        console.log("submit recipe was called")
+        // axios.post('/recipes')
+        //     .then(res => console.log(res))
+        //     .catch(err => console.log(err))
+    }
     return (
         <Context.Provider
             value={{
                 featuredRecipe,
+                recipesList,
+                submitRecipe
             }}
         > 
             {props.children}

@@ -6,17 +6,17 @@ import Button from 'react-bootstrap/Button'
 function Search() {
 
     //state
-    const [search, setSearch] = useState({search: ""})
     //state -> is rendering list? if not push footer to bottom (check jokes app)
-    
-    
+    const [search, setSearch] = useState({search: ""})
+
+
     //handlechange
     function handleChange(e){
         console.log("handleChange")
         const {name, value} = e.target
         setSearch( {[name]: value} )
     }
-
+    
     //submit search
         //store in context
 
