@@ -40,6 +40,44 @@ recipeRouter.route('/featured')
                 return res.status(200).send(recipe)
             })
     })
+
+// { name: {$regex: searchText, $options: 'i'}
+
+recipeRouter.get("/search",
+(req, res, next) => {
+const { search } = req.query
+const searchText = new RegExp(search)
+Recipe.find({
+          $or: [
+           { name: {
+             $regex: searchText,
+             $options: 'i'
+           }},
+           { nickname: {
+             $regex: searchText,
+             $options: 'i'
+           }},
+           { author: {
+             $regex: searchText,
+             $options: 'i'
+           }},
+           { type: {
+             $regex: searchText,
+             $options: 'i'
+           }},
+           { origin: {
+             $regex: searchText,
+             $options: 'i'
+           }}
+          ]},
+      (err, recipes) => {
+        if(err){
+            res.status(500)
+            return next(err)
+        }
+        return res.status(200).send(recipes)
+    })
+})
     
 //("/:recipeId") Routes
 recipeRouter.route("/:recipeId")
@@ -65,15 +103,9 @@ recipeRouter.route("/:recipeId")
                 return res.status(201).send(updatedRecipe)
             })
     })
-    .delete((req, res, next) => {
-        Recipe.findOneAndDelete({_id: req.params.recipeId},
-            (err, recipe) => {
-                
-            })
-    })
+    //deleteOne
 
 
-//get by type, tag, search
 
     module.exports = recipeRouter
 
