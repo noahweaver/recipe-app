@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react'
+
 import axios from 'axios'
 const Context = React.createContext()
+
 
 function ContextProvider(props) {
 //state
     const [featuredRecipe, setFeaturedRecipe] = useState({})
     const [recipesList, setRecipesList] = useState([])
-
+    const [searchField, setSearchField] = useState({search: ""})
 
 
 //functions    
@@ -14,7 +16,6 @@ function ContextProvider(props) {
         getFeaturedRecipe()
     }, [])
 
-    
 
 //axios requests
     function getFeaturedRecipe(){
@@ -28,9 +29,17 @@ function ContextProvider(props) {
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }
-    function deleteBounty(recipeId){
+    function deleteRecipe(recipeId){
         axios.delete(`/recipes/${recipeId}` )
             .then(res => console.log(res))
+            .catch(err => console.log(err))
+    }
+    //GET using search criteria in route
+    function getSearchedRecipes(){
+        axios.get(`/recipes/search?search=${searchField.search}`)
+            .then(res => {
+                setRecipesList(res.data)
+            })
             .catch(err => console.log(err))
     }
     return (
@@ -38,7 +47,10 @@ function ContextProvider(props) {
             value={{
                 featuredRecipe,
                 recipesList,
-                submitRecipe
+                submitRecipe,
+                searchField,
+                setSearchField,
+                getSearchedRecipes
             }}
         > 
             {props.children}
