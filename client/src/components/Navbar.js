@@ -5,13 +5,13 @@ function Navbar() {
     return (
         <Nav className="justify-content-end p-1">
             <Nav.Item >
-                <Nav.Link className="text-light-grey" href="#/home">Home</Nav.Link>
+                <Nav.Link className="text-light-grey" href="/home">Home</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link className="text-light-grey" href="#/home">Search</Nav.Link>
+                <Nav.Link className="text-light-grey" href="/search">Search</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link className="text-light-grey" href="#/home">Submit</Nav.Link>
+                <Nav.Link className="text-light-grey" href="/submit-recipe">Submit</Nav.Link>
             </Nav.Item>
         </Nav>
     )
