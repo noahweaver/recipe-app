@@ -17,3 +17,18 @@ body{
 .mx-10p{
     margin: 0 10%;
 }
+.text-light-grey{
+    color: #cccfd7;
+}
+.w-35p{
+    width: 35%;
+}
+.w-100{
+    width: 100%;
+}
+.bg-grey-transparent{
+    background-color: rgba(204, 207, 215, 0.3);
+}
+.mt-15p{
+    margin-top: 15%;
+}

@@ -8,9 +8,10 @@ function RecipeCard(props) {
     const {featuredRecipe} = useContext(Context)
 
     return (
-        <Card style={{ width: '35%' }} className="text-center bg-dough text-almost-black mx-10p">
+
+        <Card style={{ width: '38%' }} className="text-center bg-dough text-almost-black mx-10p">
             <Card.Header as='h1'>Featured Recipe</Card.Header>
-            <Card.Img className="mx-auto mt-3" variant="top" src={featuredRecipe.imgUrl} style={{ width: "200px" }}/>
+            <Card.Img className="mx-auto mt-3 rounded" variant="top" src={featuredRecipe.imgUrl} style={{ width: "200px" }}/>
             <Card.Body>
                 <Card.Title as="h2">{featuredRecipe.name}</Card.Title>
                 <Card.Subtitle>{featuredRecipe.type}</Card.Subtitle>
