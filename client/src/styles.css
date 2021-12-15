@@ -14,6 +14,9 @@ body{
 .text-almost-black{
     color: #2f3133;
 }
+.bg-almost-black{
+    background-color: #2f3133;
+}
 .mx-10p{
     margin: 0 10%;
 }

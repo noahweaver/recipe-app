@@ -25,10 +25,9 @@ function Search() {
         
 
         <div>
-            <h1>SEARCH</h1>
-            <Form className="container w-35p">
+            <Form className="container w-35p bg-almost-black p-3 rounded">
                 <Form.Group className="mb-3">
-                    <Form.Label>Search For A Recipe</Form.Label>
+                    <Form.Label className="display-6">Search For A Recipe</Form.Label>
                     <Form.Control
                         name="search" 
                         type="text" 
@@ -40,8 +39,10 @@ function Search() {
                 </Form.Group>
                 <Button type="submit" className="btn btn-secondary">Submit</Button>
             </Form>
-
-            <RecipeList />
+            <div className="container w-35p p-5">
+                <RecipeList />
+            </div>
+            
            
             
             {/* list of recipes */}
