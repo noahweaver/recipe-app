@@ -19,12 +19,11 @@ function Home(props) {
                     <Card.Text><b>Required Ingredients:</b> {featuredRecipe.ingredients}</Card.Text>
                     <Card.Text><b>Directions:</b> {featuredRecipe.directions}</Card.Text>
                     <Card.Text><b>Author:</b> <a href={featuredRecipe.author}>{featuredRecipe.author}</a></Card.Text>
-                    {/* Button to navigate to recipe dashboard */} 
-                    <Button type='button' className="btn btn-secondary">Go To Recipe Dashboard</Button>
                 </Card.Body>
                 </Card>
             
             <div className="w-35p pt-5">
+
                 <h1>HOME PAGE</h1>
                 <p>contentcontentcontentcontentcontent</p>
                 <p>contentcontentcontentcontentcontent</p>
