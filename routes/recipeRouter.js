@@ -7,12 +7,12 @@ const Recipe = require('../models/recipe')
 //("/") Routes
 recipeRouter.route("/")
     .get((req, res, next) => {
-        Recipe.find((err, bounties) => {
+        Recipe.find((err, recipes) => {
             if(err){
                 res.status(500)
                 return next(err)
             }
-            return res.status(200).send(bounties)
+            return res.status(200).send(recipes)
         })
     })
     .post((req, res, next) => {
