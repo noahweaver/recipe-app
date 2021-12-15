@@ -16,7 +16,6 @@ function App() {
                     <Route path="home" element={<Home />}/>
                     <Route path="search" element={<Search />}>
                         <Route index element={<Search />}/>
-                        <Route path=":search" element={<Search />}/>
                     </Route>
                     <Route path='/recipes' element={<RecipeDashboard />}>
                         <Route index element={<RecipeDashboard />}/>
