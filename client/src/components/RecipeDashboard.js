@@ -1,10 +1,16 @@
 import React from 'react'
+import RecipeCard from './Recipecard'
 
-function RecipeDashboard() {
+function RecipeDashboard(props) {
+
     return (
-        <div>
+        
+            <div className="container">
+                <RecipeCard />
+            </div>
+        
             
-        </div>
+        
     )
 }
 
