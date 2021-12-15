@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import{Context} from '../Context'
-import {Link, useNavigate, useLocation} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 
 function RecipeList(props) {
@@ -17,15 +17,6 @@ function RecipeList(props) {
             >
             {recipe.name}
             </li>) : null }
-            {/* {recipesList ? recipesList.map(recipe => 
-            <li className="recipe-list-item pb-3"
-                recipe={recipe} 
-                key={recipe._id}>
-                <Link className="black-text" 
-                    aria-current="page" 
-                    to={`/recipes/${recipe._id}`}>{recipe.name}
-                </Link>
-            </li>) : null } */}
         </ul>
         
     )
