@@ -7,31 +7,57 @@ html, body{
 body{ 
     background: url("https://images.pexels.com/photos/6294402/pexels-photo-6294402.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") no-repeat center center fixed; 
     background-size: cover;
-  }
-.bg-dough{
-    background-color: #cac4c1;
 }
-.text-almost-black{
-    color: #2f3133;
-}
-.bg-almost-black{
-    background-color: #2f3133;
+
+
+/* Spacing */
+.mt-15p{
+    margin-top: 15%;
 }
 .mx-10p{
     margin: 0 10%;
 }
-.text-light-grey{
-    color: #cccfd7;
-}
+
+/* Sizing */
 .w-35p{
     width: 35%;
 }
 .w-100{
     width: 100%;
 }
-.bg-grey-transparent{
+
+/* Background Colors */
+.bg-dough{
+    background-color: rgba(202, 196, 193, 0.85);
+}
+.bg-almost-black{
+    background-color: #2f3133;
+}
+.bg-grey-transparent3{
     background-color: rgba(204, 207, 215, 0.3);
 }
-.mt-15p{
-    margin-top: 15%;
+.bg-grey-transparent5{
+    background-color: rgba(204, 207, 215, 0.5);
 }
+
+/* Text Colors */
+.black-text{
+    color: black;
+}
+.text-almost-black{
+    color: #2f3133;
+}
+.text-light-grey{
+    color: #cccfd7;
+}
+
+/* Hover */
+.recipe-list-item{
+    text-decoration: none;
+    list-style-type: none;
+    font-size:x-large;
+}
+.recipe-list-item :hover{
+    color: rgb(223, 0, 0);
+}
+

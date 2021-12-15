@@ -33,22 +33,17 @@ function Search() {
                         type="text" 
                         placeholder="Search"
                         onChange={handleSearch}
-                        value={searchField.search}
-                    >
+                        value={searchField.search}>
                     </Form.Control>
                 </Form.Group>
                 <Button type="submit" className="btn btn-secondary">Submit</Button>
             </Form>
-            <div className="container w-35p p-5">
+            <div className="container w-35p p-5 my-3 bg-grey-transparent5 rounded">
                 <RecipeList />
             </div>
-            
-           
-            
             {/* list of recipes */}
                 {/* map over list */}
                 {/* each recipe is hyperlinked to dashboard with that info */}
-            
         </div>
     )
 }

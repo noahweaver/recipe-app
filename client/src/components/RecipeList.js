@@ -10,8 +10,13 @@ function RecipeList(props) {
     return (
         <ul>
             {recipesList ? recipesList.map(recipe => 
-            <li recipe={recipe} key={recipe._id}>
-                <Link className="nav-link" aria-current="page" to="/recipes/recipeId" >{recipe.name}</Link>
+            <li className="recipe-list-item pb-3"
+                recipe={recipe} 
+                key={recipe._id}>
+                <Link className="black-text" 
+                    aria-current="page" 
+                    to={`/recipes/${recipe._id}`}>{recipe.name}
+                </Link>
                 {/* link leads to dashboard for each specific recipe */}
             </li>) : null }
         </ul>
