@@ -8,25 +8,43 @@ body{
     background: url("https://images.pexels.com/photos/6294402/pexels-photo-6294402.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") no-repeat center center fixed; 
     background-size: cover;
 }
-
-
-/* Spacing */
+                                    /* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@300&display=swap');
+.font-khand{
+    font-family: 'Khand', sans-serif;
+}
+                                        /* Spacing */
+/* Margin-top */
+.mt-5p{
+    margin-top: 5%;
+}
 .mt-15p{
     margin-top: 15%;
 }
+/* Margin-X Axis */
 .mx-10p{
     margin: 0 10%;
 }
 
-/* Sizing */
+                                        /* Sizing */
 .w-35p{
     width: 35%;
 }
 .w-100{
     width: 100%;
 }
-
-/* Background Colors */
+/* Min Height */
+.min-h-50vh{
+    min-height: 50vh;
+}
+.min-h-100vh{
+    min-height: 100vh;
+}
+                                            /* Font Size */
+.font-100{
+    font-size: 100px;
+}
+                                    /* Background Colors */
 .bg-dough{
     background-color: rgba(202, 196, 193, 0.85);
 }
@@ -40,24 +58,31 @@ body{
     background-color: rgba(204, 207, 215, 0.5);
 }
 
-/* Text Colors */
+                                        /* Text Colors */
 .black-text{
     color: black;
 }
 .text-almost-black{
-    color: #2f3133;
+    color: #232425;
 }
 .text-light-grey{
     color: #cccfd7;
 }
 
-/* Hover */
+                                                /* Hovers */
+.cursor{
+    cursor: pointer;
+}
+.recipe-list{
+    color: black
+}
 .recipe-list-item{
     text-decoration: none;
     list-style-type: none;
-    font-size:x-large;
+    font-size:large;
 }
-.recipe-list-item :hover{
+.recipe-list li:hover{
     color: rgb(223, 0, 0);
+    font-size:x-large;
 }
 

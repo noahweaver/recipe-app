@@ -19,7 +19,7 @@ function Search() {
         <div>
             <Form className="container w-35p bg-almost-black p-3 rounded">
                 <Form.Group className="mb-3">
-                    <Form.Label className="display-6">Search For A Recipe</Form.Label>
+                    <Form.Label className="display-6 font-khand">Search For A Recipe</Form.Label>
                     <Form.Control
                         name="search" 
                         type="text" 

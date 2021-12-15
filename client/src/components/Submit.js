@@ -104,7 +104,7 @@ function Submit(props) {
         <div>
             {!submitToggle ? 
                 <>
-                <h1 className="text-center">SUBMIT</h1>
+                <h1 className="text-center font-khand display-6">SUBMIT</h1>
                 <Form className="container" onSubmit={handleSubmit}>
                     <Form.Group controlId="name">
                         <Form.Label>Recipe Name</Form.Label>

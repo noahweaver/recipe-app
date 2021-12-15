@@ -8,9 +8,9 @@ function RecipeList(props) {
     const {recipesList} = useContext(Context)
 
     return (
-        <ul>
+        <ul className="min-h-50vh recipe-list">
             {recipesList ? recipesList.map(recipe => 
-            <li className="recipe-list-item pb-3"
+            <li className="recipe-list-item pb-3 cursor"
                 onClick={() => {
                     navigate(`/recipes/${recipe._id}`, {state: {recipe}})
                 }}
