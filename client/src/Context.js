@@ -14,10 +14,18 @@ function ContextProvider(props) {
 //functions    
     useEffect(() => {
         getFeaturedRecipe()
+        getRecipes()
     }, [])
 
 
 //axios requests
+    function getRecipes(){
+        axios.get('/recipes')
+            .then(res => {
+                setRecipesList(res.data)
+            })
+            .catch(err => console.log(err))
+    }
     function getFeaturedRecipe(){
         axios.get('/recipes/featured')
             .then(res => setFeaturedRecipe(res.data))
