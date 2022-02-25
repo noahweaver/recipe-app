@@ -23,7 +23,7 @@ function RecipeDashboard(props) {
     return (
         <div className="container">
         {singleRecipe ?
-            <Card style={{ width: '50%' }} className="text-center bg-dough text-almost-black mx-auto p-5 m-5">
+            <Card style={{ width: '50%' }} className="text-c    enter bg-dough text-almost-black mx-auto p-5 m-5">
                 <Card.Img className="mx-auto mt-3 rounded" variant="top" src={singleRecipe.imgUrl} style={{ width: "250px" }}/>
                 <Card.Body>
                     <Card.Title as="h2" className="font-khand display-6 fw-bold">{singleRecipe.name}</Card.Title>
