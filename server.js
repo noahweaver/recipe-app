@@ -4,7 +4,7 @@ require('dotenv').config()
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 const path = ('path')
-const port = process.env.PORT || 9000
+
 
 //Middleware
 app.use(morgan('dev'))
@@ -38,6 +38,6 @@ app.get("*", (req, res) => {
 });
 
 //Listen
-app.listen(port, () => {
+app.listen(process.env.PORT || 9000, () => {
     console.log("the server is running")
 })
