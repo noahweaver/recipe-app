@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
-import {Context} from '../Context'
-import RecipeList from './RecipeList'
+import {Context} from '../context/Context'
+import RecipeList from '../components/RecipeList'
 import Form from 'react-bootstrap/Form'
 
 

@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { Context } from '../Context'
+import { Context } from '../context/Context'
 
 
 function Submit(props) {
