@@ -39,5 +39,5 @@ app.get("*", (req, res) => {
 
 //Listen
 app.listen(port, () => {
-    console.log("the server is running on Port 9000")
+    console.log("the server is running")
 })
