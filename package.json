@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/noahweaver/recipe-app#readme",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.1.1",
     "morgan": "^1.10.0"

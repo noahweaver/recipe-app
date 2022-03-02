@@ -1,5 +1,6 @@
 const express = require("express")
-const app = express() 
+const app = express()
+require('dotenv').config()
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 const path = ('path')
@@ -10,9 +11,16 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 //Connect to DB
-mongoose.connect(process.env.MONGODB_URI , { useNewUrlParser: true },
-    () => console.log("Connected to the database")
-)
+mongoose.connect(process.env.MONGODB_URI,
+    {useNewUrlParser: true, useUnifiedTopology: true}, 
+        (err) => {
+            if(err){
+                console.log(err)
+            } else {
+                console.log("Connected to the Database")
+            }
+        }
+);
 
 //Routes
 app.use("/recipes", require("./routes/recipeRouter.js"))
