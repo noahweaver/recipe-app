@@ -58,7 +58,8 @@ function ContextProvider(props) {
                 submitRecipe,
                 searchField,
                 setSearchField,
-                getSearchedRecipes
+                getSearchedRecipes,
+                deleteRecipe
             }}
         > 
             {props.children}

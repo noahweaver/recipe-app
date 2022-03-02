@@ -1,7 +1,6 @@
 import React, {useContext} from 'react'
 import {Context} from '../Context'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 
 function Home(props) {
 
