@@ -1,7 +1,9 @@
 import React, {useState, useContext} from 'react'
+import { Context } from '../context/Context'
+import AddIngredient from '../components/AddIngredient'
+import AddStep from '../components/AddStep'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { Context } from '../context/Context'
 
 
 function Submit(props) {
@@ -21,72 +23,14 @@ function Submit(props) {
         calories: "",
         cookTime: "",
         description: "",
-        ingredients: "",
-        directions: "",
+        ingredients: [],
+        directions: [],
         notes: ""
     })
     const [submitToggle, setSubmitToggle] = useState(false)
+    const [addingIngredient, setAddingIngredient] = useState(false)
+    const [addingStep, setAddingStep] = useState(false)
 
-    //functions from slack chat with Nicholas Black and Eric
-    //from Nicholas
-//     const TEXT = "1. Reserve 1 Tbsp. cookie crumbs. Mix cream cheese and remaining crumbs until well blended. Shape into 42 (1-inch) balls. Refrigerate 30 min. 2. Melt chocolate as directed on package. Dip balls in chocolate; place on parchment or waxed paper-covered baking sheet. Sprinkle with reserved crumbs. 3. Refrigerate 1 hour or until firm."
-// const parsed_steps = []
-// for(
-//         let text_to_process = TEXT, i = 1
-//         ; text_to_process.length > 0 && i < 1000
-//         ; i++
-//     ){
-//     let [separated_step, leftovers] = pullNextStepFrom(text_to_process, i)
-//     text_to_process = leftovers
-//     parsed_steps.push(separated_step)
-// }
-
-// console.log(parsed_steps)
-
-// function pullNextStepFrom(text, expected_step_number){
-    
-//     if(text.length <= 0)
-//         return ["",""]
-
-//     const start = `${expected_step_number}.`
-//     const end = `${expected_step_number + 1}.`
-
-//     const start_position = text.indexOf(start)
-//     let end_position = text.indexOf(end) 
-
-//     if(end_position === -1)
-//         end_position = text.length
-    
-//     return [
-//         text.slice(start_position + start.length, end_position).trim(),
-//         text.slice(end_position, text.length).trim()
-//     ]
-// }
-
-//from Eric
-// const [steps, setSteps] = useState([{number: 1, text:""}])
-
-// addStep(){
-//    setSteps(prev => [...prev, {number:prev.length, text:""}])
-// }
-
-// handleChangeOfStep(e, number){
-//    setSteps(prev => prev.map(step => step.number === number ? {number, text: e.target.value} : step))
-// }
-
-// const stepsList = steps.map(step => (
-//  <input value={step.text} onChange={e=>handleChangeOfStep(e, step.number)}/>
-// ))
-
-//simplified state using i
-// const [steps, setSteps] = useState([""])
-// const stepsList = steps.map((step, i) => (
-//     <input value={step.text} onChange={e=>handleChangeOfStep(e, i)}/>
-//    ))
-
-
-//     //context
-    //POST request
     function handleSubmit(e){
         e.preventDefault()
         console.log("handlesubmit was called")
@@ -94,10 +38,27 @@ function Submit(props) {
         setSubmitToggle(true)
         //reset state
     }
+
     function handleChange(e){
-        console.log("handlechange")
         const {name, value} = e.target
         setInputs(prevInputs => ({...prevInputs, [name]: value}))
+    }
+
+    function handleIngredients(ingredient){
+        console.log("handleIngredients was called")
+        setInputs(prevInputs => ({
+            ...prevInputs,
+            ingredients: [...prevInputs.ingredients, ingredient]
+        }))
+    }
+
+    function handleSteps(step){
+        console.log("handleSteps was called")
+        setInputs(prevInputs => ({
+            ...prevInputs,
+            directions: [...prevInputs.directions, step]
+        }))
+
     }
 
     return (
@@ -247,34 +208,29 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="ingredients">
-                        <Form.Label>Recipe ingredients</Form.Label>
-                        <Form.Control
-                            as="textarea" rows={5}
-                            name="ingredients"
-                            type="text"
-                            placeholder="Ingredients"
-                            value={inputs.ingredients}
-                            onChange={handleChange}
-                            className="mb-3"
-                            required
-                            >
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId="directions">
-                        <Form.Label>Directions</Form.Label>
-                        <Form.Control
-                            as="textarea" rows={10}
-                            name="directions"
-                            type="text"
-                            placeholder="Recipe Directions"
-                            value={inputs.directions}
-                            onChange={handleChange}
-                            className="mb-3"
-                            required
-                            >
-                        </Form.Control>
-                    </Form.Group>
+                    {/* map of current ingredients, change to ordered/numbered list */}
+                    {/* map needs to be in a box or table to make more readable */}
+                    {inputs.ingredients.map(i => <p>{i.ingredient}, {i.amount}</p>)}
+                    {!addingIngredient ? 
+                    <Button onClick={() => setAddingIngredient(true)}>Add Ingredient</Button>
+                    :
+                    <AddIngredient 
+                        recipe={inputs}
+                        handleIngredients={handleIngredients}
+                        setAddingIngredient={setAddingIngredient}
+                    />
+                    }
+                    {/* map of steps in numbered list */}
+                    {inputs.directions.map(s => <p>{s}</p>)}
+                    {!addingStep ?
+                    <Button onClick={() => setAddingStep(true)}>Add Step</Button>
+                    :
+                    <AddStep 
+                        recipe={inputs}
+                        setAddingStep={setAddingStep}
+                        handleSteps={handleSteps}
+                    />
+                    }
                     <Form.Group controlId="notes">
                         <Form.Label>Is there anything else you would like to add?</Form.Label>
                         <Form.Control

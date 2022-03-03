@@ -1,8 +1,8 @@
-import React, {useContext} from 'react'
-import {Context} from '../Context'
+import React, { useContext } from 'react'
+import { Context } from '../context/Context'
 import Card from 'react-bootstrap/Card'
 
-function Home(props) {
+function Home( props ) {
 
     const {featuredRecipe} = useContext(Context)
 

@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from 'react-bootstrap/Card'
 import axios from 'axios'
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 
-function RecipeDashboard(props) {
+function RecipeDashboard( props ) {
     
     const [singleRecipe, setSingleRecipe] = useState({})
-    const {recipeId} = useParams()
+    const { recipeId } = useParams()
     
 
     useEffect(() => {

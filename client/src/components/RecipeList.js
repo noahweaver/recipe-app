@@ -1,6 +1,6 @@
-import React, {useContext} from 'react'
-import{Context} from '../context/Context'
-import {useNavigate} from 'react-router-dom'
+import React, { useContext } from 'react'
+import{ Context } from '../context/Context'
+import { useNavigate } from 'react-router-dom'
 
 
 function RecipeList(props) {

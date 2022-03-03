@@ -1,11 +1,11 @@
 import React from 'react'
 import {Routes, Route} from 'react-router-dom'
 import Layout from './components/Layout'
-import Home from './components/Home'
-import Search from './components/Search'
-import RecipeDashboard from './components/RecipeDashboard'
-import Submit from './components/Submit'
-import NotFound from './components/NotFound'
+import Home from './pages/Home'
+import Search from './pages/Search'
+import RecipeDashboard from './pages/RecipeDashboard'
+import Submit from './pages/Submit'
+import NotFound from './pages/NotFound'
 
 function App() {
     return (
