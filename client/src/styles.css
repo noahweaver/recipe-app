@@ -27,6 +27,15 @@ body{
 }
 
                                         /* Sizing */
+.w-10p{
+    width: 10%;
+}
+.w-15p{
+    width: 15%;
+}
+.w-20p{
+    width: 20%;
+}
 .w-35p{
     width: 35%;
 }

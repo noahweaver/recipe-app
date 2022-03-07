@@ -4,6 +4,9 @@ import AddIngredient from '../components/AddIngredient'
 import AddStep from '../components/AddStep'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 
 function Submit(props) {
@@ -66,7 +69,10 @@ function Submit(props) {
             {!submitToggle ? 
                 <>
                 <h1 className="text-center font-khand display-6">SUBMIT</h1>
+                <Container fluid>
                 <Form className="container" onSubmit={handleSubmit}>
+                    <Row>
+                    <Col>
                     <Form.Group controlId="name">
                         <Form.Label>Recipe Name</Form.Label>
                         <Form.Control
@@ -79,6 +85,8 @@ function Submit(props) {
                             required>
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="author">
                         <Form.Label>Recipe Author</Form.Label>
                         <Form.Control
@@ -91,6 +99,8 @@ function Submit(props) {
                             required>
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="nickname">
                         <Form.Label>Is your recipe known by another name?</Form.Label>
                         <Form.Control
@@ -102,18 +112,8 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="imgUrl">
-                        <Form.Label>Image</Form.Label>
-                        <Form.Control
-                            name="imgUrl"
-                            type="text"
-                            placeholder="URL"
-                            value={inputs.imgUrl}
-                            onChange={handleChange}
-                            className="mb-3">
-                        </Form.Control>
-                    </Form.Group>
-                    {/*add image upload */}
+                    </Col>
+                    <Col>
                     <Form.Group controlId="type">
                         <Form.Label>Type</Form.Label>
                         <Form.Control
@@ -127,7 +127,11 @@ function Submit(props) {
                             >
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="origin">
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col>
+                        <Form.Group controlId="origin">
                         <Form.Label>Recipe Origin</Form.Label>
                         <Form.Control
                             name="origin"
@@ -138,6 +142,8 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="servings">
                         <Form.Label>Servings</Form.Label>
                         <Form.Control
@@ -149,6 +155,8 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="calories">
                         <Form.Label>Calories</Form.Label>
                         <Form.Control
@@ -160,6 +168,10 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col>
                     <Form.Group controlId="totalTime">
                         <Form.Label>Total Time</Form.Label>
                         <Form.Control
@@ -173,6 +185,8 @@ function Submit(props) {
                             >
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="prepTime">
                         <Form.Label>Prep Time</Form.Label>
                         <Form.Control
@@ -184,6 +198,8 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="cookTime">
                         <Form.Label>Cook Time</Form.Label>
                         <Form.Control
@@ -196,6 +212,9 @@ function Submit(props) {
                             >
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    </Row>
+                    <Row>
                     <Form.Group controlId="description">
                         <Form.Label>Description</Form.Label>
                         <Form.Control
@@ -208,22 +227,68 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
-                    {/* map of current ingredients, change to ordered/numbered list */}
+                    </Row>
+                    
+                    <Row>
+                       {/* map of current ingredients, change to ordered/numbered list */}
                     {/* map needs to be in a box or table to make more readable */}
-                    {inputs.ingredients.map(i => <p>{i.ingredient}, {i.amount}</p>)}
+                    {inputs.ingredients.map((ingredient, index) => 
+                    <Row>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Ingredient #{index + 1}</Form.Label>
+                            <Form.Control
+                            disabled
+                            value={ingredient.ingredient}
+                            className="mb-3"
+                            >
+                            </Form.Control>
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                    <Form.Group>
+                            <Form.Label>Amount:</Form.Label>
+                            <Form.Control
+                            disabled
+                            value={ingredient.amount}
+                            className="mb-3"
+                            >
+                            </Form.Control>
+                        </Form.Group>
+                    </Col>
+                    <Button className="btn btn-primary w-10p mx-2 mt-4 h-50" onClick={() => { }}>Edit #{index + 1}</Button>
+                    </Row>)}
                     {!addingIngredient ? 
-                    <Button onClick={() => setAddingIngredient(true)}>Add Ingredient</Button>
+                    <Button className="btn btn-primary w-15p mb-3" onClick={() => setAddingIngredient(true)}>Add Ingredient</Button>
                     :
                     <AddIngredient 
                         recipe={inputs}
                         handleIngredients={handleIngredients}
                         setAddingIngredient={setAddingIngredient}
                     />
-                    }
-                    {/* map of steps in numbered list */}
-                    {inputs.directions.map(s => <p>{s}</p>)}
+                    } 
+                    </Row>
+                    <Row>
+                        {/* map of steps in numbered list */}
+                    {inputs.directions.map((step, index) => 
+                    <Row>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Step {index + 1}</Form.Label>
+                            <Form.Control
+                            disabled
+                            value={step}
+                            className="mb-3"
+                            >
+                            </Form.Control>
+                        </Form.Group>
+                    </Col>
+                    <Button className="btn btn-primary w-10p mx-2 mt-4 h-50" onClick={() => { }}>Edit Step {index +1}</Button>
+                    </Row>
+                    
+                    )}
                     {!addingStep ?
-                    <Button onClick={() => setAddingStep(true)}>Add Step</Button>
+                    <Button className="btn btn-primary w-15p mb-3" onClick={() => setAddingStep(true)}>Add Step</Button>
                     :
                     <AddStep 
                         recipe={inputs}
@@ -231,7 +296,9 @@ function Submit(props) {
                         handleSteps={handleSteps}
                     />
                     }
-                    <Form.Group controlId="notes">
+                    </Row>
+                    <Row>
+                        <Form.Group controlId="notes">
                         <Form.Label>Is there anything else you would like to add?</Form.Label>
                         <Form.Control
                             as="textarea" rows={3}
@@ -243,14 +310,30 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
-                    <Button type="submit" className="btn btn-secondary">Submit Recipe</Button>
+                    </Row>
+                    <Row>
+                        <Form.Group controlId="imgUrl">
+                        <Form.Label>Image</Form.Label>
+                        <Form.Control
+                            name="imgUrl"
+                            type="text"
+                            placeholder="URL"
+                            value={inputs.imgUrl}
+                            onChange={handleChange}
+                            className="mb-3">
+                        </Form.Control>
+                    </Form.Group>
+                    </Row>
+                    {/*add image upload */}
+                    <Button type="submit" className="btn btn-primary">Submit Recipe</Button>
                 </Form>
+                </Container>
                 </>
                 :
                 <>
                 <h1>Thank you for your submission!</h1>
                 <h5>Submit Another?</h5>
-                <button className="btn btn-secondary" onClick={() => window.location.reload()}>Yes!</button>
+                <button className="btn btn-primary" onClick={() => window.location.reload()}>Yes!</button>
                 </>
             }
         </div>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 
 
 function AddStep(props) {
@@ -19,7 +22,8 @@ function AddStep(props) {
   }
 
   return (
-    <>
+    <Row>
+    <Col>
     <Form.Group controlId="directions">
       <Form.Label>Add Step</Form.Label>
       <Form.Control
@@ -33,10 +37,11 @@ function AddStep(props) {
           >
       </Form.Control>
   </Form.Group>
+  </Col>
   {/* change to icons */}
-  <Button onClick={() => props.setAddingStep(false)}>Cancel</Button>
-  <Button onClick={() => addStep()}>Submit</Button>
-  </>
+  <Button className="btn btn-primary w-10p mx-2 mt-4 h-50" onClick={() => props.setAddingStep(false)}>Cancel</Button>
+  <Button className="btn btn-primary w-10p mx-2 mt-4 h-50" onClick={() => addStep()}>Submit</Button>
+  </Row>
   )
 }
 
