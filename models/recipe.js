@@ -20,7 +20,7 @@ const recipeSchema = new Schema({
     prepTime: String,
     cookTime: String,
     description: String,
-    ingredients: {
+    ingredients: [{
         ingredient: {
             type: String,
             required: true
@@ -29,7 +29,7 @@ const recipeSchema = new Schema({
             type: String,
             required: true
         }
-    },
+    }],
     directions: {
         type: Array,
         required: true
