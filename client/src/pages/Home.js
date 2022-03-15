@@ -24,7 +24,7 @@ function Home( props ) {
             <div className="w-35p pt-5">
 
                 <h1 className="font-khand font-100 fw-bold">HOME PAGE</h1>
-                <p className="fs-4">I am happy to have you here. Come and find a new recipe to try or submit your own. No matter your reason for visiting, I hope you enjoy the site.</p>
+                <p className="fs-4">Come and find a new recipe to try or submit your own. No matter your reason for visiting, I hope you enjoy the site.</p>
                 
             </div>
             

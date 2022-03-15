@@ -1,7 +1,9 @@
 import React, {useState, useContext} from 'react'
 import { Context } from '../context/Context'
-import AddIngredient from '../components/AddIngredient'
-import AddStep from '../components/AddStep'
+import IngredientForm from '../components/IngredientForm'
+import Ingredient from '../components/Ingredient'
+import Step from '../components/Step'
+import StepForm from '../components/StepForm'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
@@ -228,40 +230,20 @@ function Submit(props) {
                         </Form.Control>
                     </Form.Group>
                     </Row>
-                    
                     <Row>
-                       {/* map of current ingredients, change to ordered/numbered list */}
-                    {/* map needs to be in a box or table to make more readable */}
                     {inputs.ingredients.map((ingredient, index) => 
-                    <Row>
-                    <Col>
-                        <Form.Group>
-                            <Form.Label>Ingredient #{index + 1}</Form.Label>
-                            <Form.Control
-                            disabled
-                            value={ingredient.ingredient}
-                            className="mb-3"
-                            >
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                    <Form.Group>
-                            <Form.Label>Amount:</Form.Label>
-                            <Form.Control
-                            disabled
-                            value={ingredient.amount}
-                            className="mb-3"
-                            >
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Button className="btn btn-primary w-10p mx-2 mt-4 h-50" onClick={() => { }}>Edit #{index + 1}</Button>
-                    </Row>)}
+                        <Ingredient 
+                            key={index} 
+                            index={index} 
+                            ingredient={ingredient}
+                            recipe={inputs}
+                            setRecipe={setInputs}
+                        />
+                    )}
                     {!addingIngredient ? 
                     <Button className="btn btn-primary w-15p mb-3" onClick={() => setAddingIngredient(true)}>Add Ingredient</Button>
                     :
-                    <AddIngredient 
+                    <IngredientForm
                         recipe={inputs}
                         handleIngredients={handleIngredients}
                         setAddingIngredient={setAddingIngredient}
@@ -271,26 +253,18 @@ function Submit(props) {
                     <Row>
                         {/* map of steps in numbered list */}
                     {inputs.directions.map((step, index) => 
-                    <Row>
-                    <Col>
-                        <Form.Group>
-                            <Form.Label>Step {index + 1}</Form.Label>
-                            <Form.Control
-                            disabled
-                            value={step}
-                            className="mb-3"
-                            >
-                            </Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Button className="btn btn-primary w-10p mx-2 mt-4 h-50" onClick={() => { }}>Edit Step {index +1}</Button>
-                    </Row>
-                    
+                        <Step 
+                            key={index}
+                            index={index}
+                            step={step}
+                            recipe={inputs}
+                            setRecipe={setInputs}
+                        />
                     )}
                     {!addingStep ?
                     <Button className="btn btn-primary w-15p mb-3" onClick={() => setAddingStep(true)}>Add Step</Button>
                     :
-                    <AddStep 
+                    <StepForm 
                         recipe={inputs}
                         setAddingStep={setAddingStep}
                         handleSteps={handleSteps}
