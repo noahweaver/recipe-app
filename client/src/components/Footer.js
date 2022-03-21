@@ -4,7 +4,7 @@ function Footer() {
     
 
     return (
-        <div className="bg-grey-transparent3 w-100 mt-5p fs-5">
+        <div className="bg-grey-transparent3 w-100 mt-5p fs-5 footer">
             <footer>
                 <ul className="nav justify-content-center pt-3 mb-3">
                     {/* use react router for <a> */}

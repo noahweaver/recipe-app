@@ -8,7 +8,6 @@ function Home( props ) {
 
     return (
         <div className="container-fluid d-flex flex-row justify-content-evenly p-5 mb-5">
-
                 <Card style={{ width: '35%' }} className="text-center bg-dough text-almost-black mx-10p">
                 <Card.Header as='h1' className="font-khand">Featured Recipe</Card.Header>
                 <Card.Img className="mx-auto mt-3 rounded" variant="top" src={featuredRecipe.imgUrl} style={{ width: "200px" }}/>
@@ -20,14 +19,10 @@ function Home( props ) {
                     <Card.Text><b>Author:</b> <a href={featuredRecipe.author}>{featuredRecipe.author}</a></Card.Text>
                 </Card.Body>
                 </Card>
-            
             <div className="w-35p pt-5">
-
                 <h1 className="font-khand font-100 fw-bold">HOME PAGE</h1>
                 <p className="fs-4">Come and find a new recipe to try or submit your own. No matter your reason for visiting, I hope you enjoy the site.</p>
-                
             </div>
-            
         </div>
     )
 }
