@@ -1,8 +1,14 @@
 import React, {useState, useContext} from 'react'
+import { Context } from '../context/Context'
+import IngredientForm from '../components/IngredientForm'
+import Ingredient from '../components/Ingredient'
+import Step from '../components/Step'
+import StepForm from '../components/StepForm'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { Context } from '../Context'
-
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function Submit(props) {
 
@@ -21,83 +27,70 @@ function Submit(props) {
         calories: "",
         cookTime: "",
         description: "",
-        ingredients: "",
-        directions: "",
+        ingredients: [],
+        directions: [],
         notes: ""
     })
-    const [submitToggle, setSubmitToggle] = useState(false)
+    const [submitToggle, setSubmitToggle] = useState(false);
+    const [addingIngredient, setAddingIngredient] = useState(false);
+    const [addingStep, setAddingStep] = useState(false);
+    const [editing, setEditing] = useState(false);
 
-    //functions from slack chat with Nicholas Black and Eric
-    //from Nicholas
-//     const TEXT = "1. Reserve 1 Tbsp. cookie crumbs. Mix cream cheese and remaining crumbs until well blended. Shape into 42 (1-inch) balls. Refrigerate 30 min. 2. Melt chocolate as directed on package. Dip balls in chocolate; place on parchment or waxed paper-covered baking sheet. Sprinkle with reserved crumbs. 3. Refrigerate 1 hour or until firm."
-// const parsed_steps = []
-// for(
-//         let text_to_process = TEXT, i = 1
-//         ; text_to_process.length > 0 && i < 1000
-//         ; i++
-//     ){
-//     let [separated_step, leftovers] = pullNextStepFrom(text_to_process, i)
-//     text_to_process = leftovers
-//     parsed_steps.push(separated_step)
-// }
-
-// console.log(parsed_steps)
-
-// function pullNextStepFrom(text, expected_step_number){
-    
-//     if(text.length <= 0)
-//         return ["",""]
-
-//     const start = `${expected_step_number}.`
-//     const end = `${expected_step_number + 1}.`
-
-//     const start_position = text.indexOf(start)
-//     let end_position = text.indexOf(end) 
-
-//     if(end_position === -1)
-//         end_position = text.length
-    
-//     return [
-//         text.slice(start_position + start.length, end_position).trim(),
-//         text.slice(end_position, text.length).trim()
-//     ]
-// }
-
-//from Eric
-// const [steps, setSteps] = useState([{number: 1, text:""}])
-
-// addStep(){
-//    setSteps(prev => [...prev, {number:prev.length, text:""}])
-// }
-
-// handleChangeOfStep(e, number){
-//    setSteps(prev => prev.map(step => step.number === number ? {number, text: e.target.value} : step))
-// }
-
-// const stepsList = steps.map(step => (
-//  <input value={step.text} onChange={e=>handleChangeOfStep(e, step.number)}/>
-// ))
-
-//simplified state using i
-// const [steps, setSteps] = useState([""])
-// const stepsList = steps.map((step, i) => (
-//     <input value={step.text} onChange={e=>handleChangeOfStep(e, i)}/>
-//    ))
-
-
-//     //context
-    //POST request
     function handleSubmit(e){
         e.preventDefault()
         console.log("handlesubmit was called")
         submitRecipe(inputs)
         setSubmitToggle(true)
-        //reset state
     }
+
     function handleChange(e){
-        console.log("handlechange")
         const {name, value} = e.target
         setInputs(prevInputs => ({...prevInputs, [name]: value}))
+    }
+
+    function handleIngredients(ingredient){
+        console.log("handleIngredients was called")
+        setInputs(prevInputs => ({
+            ...prevInputs,
+            ingredients: [...prevInputs.ingredients, ingredient]
+        }))
+    }
+
+    function handleSteps(step){
+        console.log("handleSteps was called")
+        setInputs(prevInputs => ({
+            ...prevInputs,
+            directions: [...prevInputs.directions, step]
+        }))
+
+    }
+
+    function removeStep(direction){
+        console.log("removeStep", direction);
+        const newSteps = inputs.directions.filter(step => step !== direction);
+        setInputs(prevState => ({
+            ...prevState,
+            directions: newSteps
+        }))
+    }
+
+    function removeIngredient(ingredient){
+        console.log("removeIngredient", ingredient);
+        const newIngredients = inputs.ingredients.filter(food => food.ingredient !== ingredient.ingredient);
+        setInputs(prevState => ({
+            ...prevState,
+            ingredients: newIngredients
+        }))
+    }
+
+    function cancelNewIngredient(){
+        console.log("cancel new ingredient");
+        setAddingIngredient(false);
+    }
+
+    function cancelNewStep(){
+        console.log("cancel new step");
+        setAddingStep(false);
     }
 
     return (
@@ -105,7 +98,10 @@ function Submit(props) {
             {!submitToggle ? 
                 <>
                 <h1 className="text-center font-khand display-6">SUBMIT</h1>
+                <Container fluid>
                 <Form className="container" onSubmit={handleSubmit}>
+                    <Row>
+                    <Col>
                     <Form.Group controlId="name">
                         <Form.Label>Recipe Name</Form.Label>
                         <Form.Control
@@ -118,6 +114,8 @@ function Submit(props) {
                             required>
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="author">
                         <Form.Label>Recipe Author</Form.Label>
                         <Form.Control
@@ -130,6 +128,8 @@ function Submit(props) {
                             required>
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="nickname">
                         <Form.Label>Is your recipe known by another name?</Form.Label>
                         <Form.Control
@@ -141,18 +141,8 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="imgUrl">
-                        <Form.Label>Image</Form.Label>
-                        <Form.Control
-                            name="imgUrl"
-                            type="text"
-                            placeholder="URL"
-                            value={inputs.imgUrl}
-                            onChange={handleChange}
-                            className="mb-3">
-                        </Form.Control>
-                    </Form.Group>
-                    {/*add image upload */}
+                    </Col>
+                    <Col>
                     <Form.Group controlId="type">
                         <Form.Label>Type</Form.Label>
                         <Form.Control
@@ -166,7 +156,11 @@ function Submit(props) {
                             >
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="origin">
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col>
+                        <Form.Group controlId="origin">
                         <Form.Label>Recipe Origin</Form.Label>
                         <Form.Control
                             name="origin"
@@ -177,6 +171,8 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="servings">
                         <Form.Label>Servings</Form.Label>
                         <Form.Control
@@ -188,6 +184,8 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="calories">
                         <Form.Label>Calories</Form.Label>
                         <Form.Control
@@ -199,6 +197,10 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col>
                     <Form.Group controlId="totalTime">
                         <Form.Label>Total Time</Form.Label>
                         <Form.Control
@@ -212,6 +214,8 @@ function Submit(props) {
                             >
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="prepTime">
                         <Form.Label>Prep Time</Form.Label>
                         <Form.Control
@@ -223,6 +227,8 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    <Col>
                     <Form.Group controlId="cookTime">
                         <Form.Label>Cook Time</Form.Label>
                         <Form.Control
@@ -235,6 +241,9 @@ function Submit(props) {
                             >
                         </Form.Control>
                     </Form.Group>
+                    </Col>
+                    </Row>
+                    <Row>
                     <Form.Group controlId="description">
                         <Form.Label>Description</Form.Label>
                         <Form.Control
@@ -247,35 +256,68 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="ingredients">
-                        <Form.Label>Recipe ingredients</Form.Label>
-                        <Form.Control
-                            as="textarea" rows={5}
-                            name="ingredients"
-                            type="text"
-                            placeholder="Ingredients"
-                            value={inputs.ingredients}
-                            onChange={handleChange}
-                            className="mb-3"
-                            required
-                            >
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId="directions">
-                        <Form.Label>Directions</Form.Label>
-                        <Form.Control
-                            as="textarea" rows={10}
-                            name="directions"
-                            type="text"
-                            placeholder="Recipe Directions"
-                            value={inputs.directions}
-                            onChange={handleChange}
-                            className="mb-3"
-                            required
-                            >
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group controlId="notes">
+                    </Row>
+                    <Row>
+                    {inputs.ingredients.map((ingredient, index) => 
+                        <Ingredient
+                            key={index}
+                            index={index}
+                            ingredient={ingredient}
+                            recipe={inputs}
+                            setRecipe={setInputs}
+                            removeIngredient={removeIngredient}
+                            setInputs={setInputs}
+                            setAddingIngredient={setAddingIngredient}
+                            setEditing={setEditing}
+                        />
+                    )}
+                    {!addingIngredient ? 
+                    <Col>
+                        <Button className="btn btn-primary w-15p mb-3" onClick={() => setAddingIngredient(true)}>Add Ingredient</Button>
+                    </Col>
+                    :
+                    <IngredientForm
+                        recipe={inputs}
+                        handleIngredients={handleIngredients}
+                        cancelNewIngredient={cancelNewIngredient}
+                        setInputs={setInputs}
+                        setAddingIngredient={setAddingIngredient}
+                        setEditing={setEditing}
+                    />
+                    } 
+                    </Row>
+                    <Row>
+                        {/* map of steps in numbered list */}
+                    {inputs.directions.map((step, index) => 
+                        <Step 
+                            key={index}
+                            index={index}
+                            step={step}
+                            recipe={inputs}
+                            setRecipe={setInputs}
+                            removeStep={removeStep}
+                            setInputs={setInputs}
+                            setAddingStep={setAddingStep}
+                            setEditing={setEditing}
+                        />
+                    )}
+                    {!addingStep ?
+                    <Col>
+                        <Button className="btn btn-primary w-15p mb-3" onClick={() => setAddingStep(true)}>Add Step</Button>
+                    </Col>
+                    :
+                    <StepForm 
+                        recipe={inputs}
+                        handleSteps={handleSteps}
+                        cancelNewStep={cancelNewStep}
+                        setInputs={setInputs}
+                        setAddingStep={setAddingStep}
+                        setEditing={setEditing}
+                    />
+                    }
+                    </Row>
+                    <Row>
+                        <Form.Group controlId="notes">
                         <Form.Label>Is there anything else you would like to add?</Form.Label>
                         <Form.Control
                             as="textarea" rows={3}
@@ -287,14 +329,30 @@ function Submit(props) {
                             className="mb-3">
                         </Form.Control>
                     </Form.Group>
-                    <Button type="submit" className="btn btn-secondary">Submit Recipe</Button>
+                    </Row>
+                    <Row>
+                        <Form.Group controlId="imgUrl">
+                        <Form.Label>Image</Form.Label>
+                        <Form.Control
+                            name="imgUrl"
+                            type="text"
+                            placeholder="URL"
+                            value={inputs.imgUrl}
+                            onChange={handleChange}
+                            className="mb-3">
+                        </Form.Control>
+                    </Form.Group>
+                    </Row>
+                    {/*add image upload */}
+                    <Button type="submit" className="btn btn-primary">Submit Recipe</Button>
                 </Form>
+                </Container>
                 </>
                 :
                 <>
                 <h1>Thank you for your submission!</h1>
                 <h5>Submit Another?</h5>
-                <button className="btn btn-secondary" onClick={() => window.location.reload()}>Yes!</button>
+                <button className="btn btn-primary" onClick={() => window.location.reload()}>Yes!</button>
                 </>
             }
         </div>
