@@ -32,15 +32,19 @@ function IngredientForm(props) {
       props.setAddingIngredient(false)
     }
     if (props.editing) {
-
       const newIngredients = props.recipe.ingredients.splice(props.index, 1, ingredient)
       console.log("newIngredients", newIngredients)
-
       props.setRecipe(prevState => ({
         ...prevState, ingredient
       }))
       props.setEditing(false)
     }
+  }
+
+  function handleCancel(){
+    props.setAddingIngredient(false); 
+    props.setEditing(false); 
+    setIngredient(initInput);
   }
 
   return (
@@ -75,7 +79,7 @@ function IngredientForm(props) {
       </Form.Control>
     </Form.Group>
     </Col>
-    <Button className="btn btn-primary w-10p mx-2 mt-4 h-50" onClick={() => { props.setAddingIngredient(false); props.setEditing(false); }}>Cancel</Button>
+    <Button className="btn btn-primary w-10p mx-2 mt-4 h-50" onClick={() => { handleCancel(); }}>Cancel</Button>
     <Button className="btn btn-primary w-10p mx-2 mt-4 h-50" onClick={() => { addIngredient(); }}>Submit</Button>
   </Row>
   )

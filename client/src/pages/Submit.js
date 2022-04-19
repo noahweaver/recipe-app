@@ -10,7 +10,6 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-
 function Submit(props) {
 
     const {submitRecipe}  = useContext(Context)
@@ -32,16 +31,16 @@ function Submit(props) {
         directions: [],
         notes: ""
     })
-    const [submitToggle, setSubmitToggle] = useState(false)
-    const [addingIngredient, setAddingIngredient] = useState(false)
-    const [addingStep, setAddingStep] = useState(false)
+    const [submitToggle, setSubmitToggle] = useState(false);
+    const [addingIngredient, setAddingIngredient] = useState(false);
+    const [addingStep, setAddingStep] = useState(false);
+    const [editing, setEditing] = useState(false);
 
     function handleSubmit(e){
         e.preventDefault()
         console.log("handlesubmit was called")
         submitRecipe(inputs)
         setSubmitToggle(true)
-        //reset state
     }
 
     function handleChange(e){
@@ -64,6 +63,34 @@ function Submit(props) {
             directions: [...prevInputs.directions, step]
         }))
 
+    }
+
+    function removeStep(direction){
+        console.log("removeStep", direction);
+        const newSteps = inputs.directions.filter(step => step !== direction);
+        setInputs(prevState => ({
+            ...prevState,
+            directions: newSteps
+        }))
+    }
+
+    function removeIngredient(ingredient){
+        console.log("removeIngredient", ingredient);
+        const newIngredients = inputs.ingredients.filter(food => food.ingredient !== ingredient.ingredient);
+        setInputs(prevState => ({
+            ...prevState,
+            ingredients: newIngredients
+        }))
+    }
+
+    function cancelNewIngredient(){
+        console.log("cancel new ingredient");
+        setAddingIngredient(false);
+    }
+
+    function cancelNewStep(){
+        console.log("cancel new step");
+        setAddingStep(false);
     }
 
     return (
@@ -232,21 +259,30 @@ function Submit(props) {
                     </Row>
                     <Row>
                     {inputs.ingredients.map((ingredient, index) => 
-                        <Ingredient 
-                            key={index} 
-                            index={index} 
+                        <Ingredient
+                            key={index}
+                            index={index}
                             ingredient={ingredient}
                             recipe={inputs}
                             setRecipe={setInputs}
+                            removeIngredient={removeIngredient}
+                            setInputs={setInputs}
+                            setAddingIngredient={setAddingIngredient}
+                            setEditing={setEditing}
                         />
                     )}
                     {!addingIngredient ? 
-                    <Button className="btn btn-primary w-15p mb-3" onClick={() => setAddingIngredient(true)}>Add Ingredient</Button>
+                    <Col>
+                        <Button className="btn btn-primary w-15p mb-3" onClick={() => setAddingIngredient(true)}>Add Ingredient</Button>
+                    </Col>
                     :
                     <IngredientForm
                         recipe={inputs}
                         handleIngredients={handleIngredients}
+                        cancelNewIngredient={cancelNewIngredient}
+                        setInputs={setInputs}
                         setAddingIngredient={setAddingIngredient}
+                        setEditing={setEditing}
                     />
                     } 
                     </Row>
@@ -259,15 +295,24 @@ function Submit(props) {
                             step={step}
                             recipe={inputs}
                             setRecipe={setInputs}
+                            removeStep={removeStep}
+                            setInputs={setInputs}
+                            setAddingStep={setAddingStep}
+                            setEditing={setEditing}
                         />
                     )}
                     {!addingStep ?
-                    <Button className="btn btn-primary w-15p mb-3" onClick={() => setAddingStep(true)}>Add Step</Button>
+                    <Col>
+                        <Button className="btn btn-primary w-15p mb-3" onClick={() => setAddingStep(true)}>Add Step</Button>
+                    </Col>
                     :
                     <StepForm 
                         recipe={inputs}
-                        setAddingStep={setAddingStep}
                         handleSteps={handleSteps}
+                        cancelNewStep={cancelNewStep}
+                        setInputs={setInputs}
+                        setAddingStep={setAddingStep}
+                        setEditing={setEditing}
                     />
                     }
                     </Row>

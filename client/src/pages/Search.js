@@ -29,7 +29,7 @@ function Search() {
                     </Form.Control>
                 </Form.Group>
             </Form>
-            <div className="container w-35p p-5 my-3 bg-grey-transparent5 rounded">
+            <div style={{height: '63vh'}} className="container w-35p p-5 my-3 bg-grey-transparent5 rounded overflow-auto">
                 <RecipeList />
             </div>
         </div>
