@@ -8,12 +8,12 @@ body{
     background: url("https://images.pexels.com/photos/6294402/pexels-photo-6294402.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") no-repeat center center fixed; 
     background-size: cover;
 }
-                                    /* Font Imports */
+  /* Font Imports */
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@300&display=swap');
 .font-khand{
     font-family: 'Khand', sans-serif;
 }
-                                        /* Spacing */
+   /* Spacing */
 /* Margin-top */
 .mt-5p{
     margin-top: 5%;
@@ -26,7 +26,16 @@ body{
     margin: 0 10%;
 }
 
-                                        /* Sizing */
+  /* Sizing */
+.w-10p{
+    width: 10%;
+}
+.w-15p{
+    width: 15%;
+}
+.w-20p{
+    width: 20%;
+}
 .w-35p{
     width: 35%;
 }
@@ -40,11 +49,11 @@ body{
 .min-h-100vh{
     min-height: 100vh;
 }
-                                            /* Font Size */
+ /* Font Size */
 .font-100{
     font-size: 100px;
 }
-                                    /* Background Colors */
+ /* Background Colors */
 .bg-dough{
     background-color: rgba(202, 196, 193, 0.85);
 }
@@ -58,7 +67,7 @@ body{
     background-color: rgba(204, 207, 215, 0.5);
 }
 
-                                        /* Text Colors */
+  /* Text Colors */
 .black-text{
     color: black;
 }
@@ -69,7 +78,7 @@ body{
     color: #cccfd7;
 }
 
-                                                /* Hovers */
+ /* Hovers */
 .cursor{
     cursor: pointer;
 }
@@ -85,4 +94,3 @@ body{
     color: rgb(223, 0, 0);
     font-size:x-large;
 }
-

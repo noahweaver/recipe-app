@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-
 import axios from 'axios'
 const Context = React.createContext()
 
@@ -26,22 +25,26 @@ function ContextProvider(props) {
             })
             .catch(err => console.log(err))
     }
+
     function getFeaturedRecipe(){
         axios.get('/recipes/featured')
             .then(res => setFeaturedRecipe(res.data))
             .catch(err => console.log(err))
     }
+
     function submitRecipe(newRecipe){
         console.log("submit recipe was called")
         axios.post('/recipes', newRecipe)
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }
+
     function deleteRecipe(recipeId){
         axios.delete(`/recipes/${recipeId}` )
             .then(res => console.log(res))
             .catch(err => console.log(err))
     }
+
     //GET using search criteria in route
     function getSearchedRecipes(){
         axios.get(`/recipes/search?search=${searchField.search}`)
@@ -50,6 +53,7 @@ function ContextProvider(props) {
             })
             .catch(err => console.log(err))
     }
+
     return (
         <Context.Provider
             value={{
