@@ -2,11 +2,16 @@ html, body{
     margin: 0;
     padding: 0;
     color: #cccfd7;
+    height: 100%;
 }
 /* background images from pexels.com */
 body{ 
     background: url("https://images.pexels.com/photos/6294402/pexels-photo-6294402.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") no-repeat center center fixed; 
     background-size: cover;
+}
+
+#root {
+    height: 100%;
 }
   /* Font Imports */
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@300&display=swap');
@@ -94,3 +99,7 @@ body{
     color: rgb(223, 0, 0);
     font-size:x-large;
 } 
+
+.layout {
+    
+}

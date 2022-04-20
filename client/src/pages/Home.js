@@ -7,7 +7,7 @@ function Home( props ) {
     const {featuredRecipe} = useContext(Context)
 
     return (
-        <div className="container-fluid d-flex flex-row justify-content-evenly p-5 mb-5">
+        <div className="container-fluid d-flex flex-row justify-content-evenly p-5">
                 <Card style={{ width: '35%', height: '68vh'}} className="text-center bg-dough text-almost-black mx-10p overflow-auto">
                 <Card.Header as='h1' className="font-khand">Featured Recipe</Card.Header>
                 <Card.Img className="mx-auto mt-3 rounded" variant="top" src={featuredRecipe.imgUrl} style={{ width: "200px" }}/>
